@@ -92,6 +92,14 @@ export const productReducer = createReducer<ProductState>(
     return {
       ...state,
       products: action.products,
+      error: ''
     };
-  })
+  }),
+  on(ProductActions.loadProductsFailure, (state, action): ProductState => {
+    return {
+      ...state,
+      products: [],
+      error: action.error
+    }
+  } )
 );

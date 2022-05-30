@@ -19,12 +19,9 @@ export class ProductEffects {
     return this.actions$.pipe(
       ofType(ProductActions.loadProducts),
       mergeMap((action) =>
-        this.productService
-          .getProducts()
-          .pipe(
-            map((products) => ProductActions.loadProductsSuccess({ products }))
-          )
-      )
+        this.productService.getProducts().pipe(
+          map((products) => ProductActions.loadProductsSuccess({ products })),
+          catchError((error) => of(ProductActions.loadProductsFailure({ error })))))
     );
   });
 }

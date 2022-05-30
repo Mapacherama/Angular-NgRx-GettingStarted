@@ -74,9 +74,9 @@ export class ProductEditComponent implements OnInit {
 
     // Watch for changes to the currently selected product
 
-    this.store
-      .select(getCurrentProduct)
-      .subscribe((currentProduct) => this.displayProduct(currentProduct));
+    this.product$ = this.store.select(getCurrentProduct).pipe(tap(
+      currentProduct => this.displayProduct(currentProduct)
+    ));
 
     // Watch for value changes for validation
     this.productForm.valueChanges.subscribe(

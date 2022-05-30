@@ -11,9 +11,9 @@ import {
   getCurrentProduct,
   getProducts,
   getError,
-} from '../state/product.reducer';
+} from '../state/';
 
-import * as ProductActions from '../state/product.actions';
+import { ProductPageActions } from '../state/actions';
 
 @Component({
   templateUrl: './product-shell.component.html',
@@ -34,7 +34,7 @@ export class ProductShellComponent implements OnInit {
     // Do NOT subscribe here because it uses an async pipe
     this.errorMessage$ = this.store.select(getError);
 
-    this.store.dispatch(ProductActions.loadProducts());
+    this.store.dispatch(ProductPageActions.loadProducts());
 
     // Do NOT subscribe here because it uses an async pipe
     this.selectedProduct$ = this.store.select(getCurrentProduct);
@@ -44,33 +44,33 @@ export class ProductShellComponent implements OnInit {
   }
 
   checkChanged(): void {
-    this.store.dispatch(ProductActions.toggleProductCode());
+    this.store.dispatch(ProductPageActions.toggleProductCode());
   }
 
   newProduct(): void {
-    this.store.dispatch(ProductActions.initializeCurrentProduct());
+    this.store.dispatch(ProductPageActions.initializeCurrentProduct());
   }
 
   productSelected(product: Product): void {
     this.store.dispatch(
-      ProductActions.setCurrentProduct({ currentProductId: product.id })
+      ProductPageActions.setCurrentProduct({ currentProductId: product.id })
     );
   }
 
   deleteProduct(product: Product): void {
     this.store.dispatch(
-      ProductActions.deleteProduct({ productId: product.id })
+      ProductPageActions.deleteProduct({ productId: product.id })
     );
   }
 
   clearProduct(): void {
-    this.store.dispatch(ProductActions.clearCurrentProduct());
+    this.store.dispatch(ProductPageActions.clearCurrentProduct());
   }
   saveProduct(product: Product): void {
-    this.store.dispatch(ProductActions.createProduct({ product }));
+    this.store.dispatch(ProductPageActions.createProduct({ product }));
   }
 
   updateProduct(product: Product): void {
-    this.store.dispatch(ProductActions.updateProduct({ product }));
+    this.store.dispatch(ProductPageActions.updateProduct({ product }));
   }
 }

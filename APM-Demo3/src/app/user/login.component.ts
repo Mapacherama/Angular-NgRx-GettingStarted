@@ -10,7 +10,7 @@ import { AuthService } from './auth.service';
 import { Store } from '@ngrx/store';
 import { State } from '../state/app.state';
 import { getMaskUserName } from './state/user.reducer';
-import * as UserActions from './state/user.actions';
+import * as UserActions from './state/user.page.actions';
 
 @Component({
   templateUrl: './login.component.html',

@@ -3,7 +3,7 @@ import { User } from '../user';
 
 /* NgRx */
 import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
-import * as UserActions from './user.actions';
+import * as UserActions from './user.page.actions';
 
 // State for this feature (User)
 export interface UserState {
